@@ -1,0 +1,45 @@
+@@ -0,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Recommender System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body data-movies='{{ movies | tojson | safe }}'>
+
+<div class="container">
+    <h1>🎬 Movie Recommender</h1>
+    <p class="subtitle">Discover movies you’ll love</p>
+
+    <!-- CONTROL BAR -->
+    <div class="control-bar">
+
+        <!-- LEFT SEARCH -->
+        <div class="autocomplete">
+            <input type="text" id="search" placeholder="Search movie..." autocomplete="off">
+            <div id="suggestions"></div>
+        </div>
+
+        <!-- CENTER DROPDOWN -->
+        <select id="movieSelect">
+            <option value="">🎥 Select a movie</option>
+            {% for movie in movies %}
+                <option value="{{ movie }}">{{ movie }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- RIGHT BUTTON -->
+        <button onclick="getRecommendations()">Recommend</button>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="results"></div>
+</div>
+
+<div id="toast"></div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
